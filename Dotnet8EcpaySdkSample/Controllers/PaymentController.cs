@@ -33,7 +33,7 @@ public class PaymentController : Controller
             MerchantId = _merchantId,
             HashKey = _hashKey,
             HashIV = _hashIV,
-            ServerUrl = $"{_domainUrl}/api/payment/callback",
+            ServerUrl = $"{_domainUrl}/api/result/callback",
             ClientUrl = $"{_domainUrl}/payment/success"
         };
         

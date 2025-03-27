@@ -9,13 +9,15 @@ public class ResultController : ControllerBase
 {
     private readonly string _hashKey;
     private readonly string _hashIV;
-    
+
     public ResultController(IConfiguration configuration)
     {
         _hashKey = configuration["EcpayHashKey"];
         _hashIV = configuration["EcpayHashIV"];
     }
-    public IActionResult Callback(PaymentResult result)
+
+    [HttpPost]
+    public IActionResult Callback([FromForm] PaymentResult result)
     {
         // 務必判斷檢查碼是否正確。
         if (!CheckMac.PaymentResultIsValid(result, _hashKey, _hashIV)) return BadRequest();
